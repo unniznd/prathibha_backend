@@ -9,3 +9,6 @@ __pycache__/
 static/
 
 db.sqlite3
+
+student.csv
+students/write.py
