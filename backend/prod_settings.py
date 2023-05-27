@@ -1,11 +1,15 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = "5hx0o22)_aj)qre_lny=1a2e4j#(kab%w%&93aih@%s9mabkk6"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 
@@ -13,7 +17,11 @@ ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'unniku$db',
+        'USER': 'unniku',
+        'PASSWORD': os.getenv("MYSQL_PASSWORD"),
+        'HOST':'unnikuznd.mysql.pythonanywhere-services.com',
+        'PORT':'3306',
     }
 }
