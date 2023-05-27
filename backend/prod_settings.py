@@ -21,7 +21,7 @@ DATABASES = {
         'NAME': 'unniku$db',
         'USER': 'unniku',
         'PASSWORD': os.getenv("MYSQL_PASSWORD"),
-        'HOST':'unnikuznd.mysql.pythonanywhere-services.com',
+        'HOST':'unniku.mysql.pythonanywhere-services.com',
         'PORT':'3306',
     }
 }
