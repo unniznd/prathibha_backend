@@ -8,6 +8,7 @@ from .models import Fees, FeeInstallment
 from .serializers import FeeSerializer
 from students.models import Students
 from users.permissions import IsAdminUserOrBranchAdminUser
+import ast
 
 class FeeView(ListAPIView):
     serializer_class = FeeSerializer
@@ -29,7 +30,8 @@ class FeeView(ListAPIView):
         if status:
             queryset = queryset.filter(status=status)
         if installment:
-            queryset = queryset.filter(installment=installment)
+            feeInstallment = FeeInstallment.objects.filter(installment=installment).first()
+            queryset = queryset.filter(installment=feeInstallment)
 
         return queryset
 
@@ -91,7 +93,7 @@ class FeeView(ListAPIView):
 class GenerateFee(ListAPIView):
     permission_classes = [IsAdminUserOrBranchAdminUser, IsAuthenticated,]
     def post(self, request, branchId, *args, **kwargs):
-        standard_fee = request.data.get('standard_fee')
+        standard_fee = ast.literal_eval(request.data.get('standard_fee'))
         installment = request.data.get('installment')
 
         if not standard_fee or not installment:
