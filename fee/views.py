@@ -97,15 +97,15 @@ class GenerateFee(ListAPIView):
         if not standard_fee or not installment:
             return Response({
                 'status':False,
-                'message':'standard_fee and month are required'
+                'message':'standard_fee and installment are required'
             },status=status.HTTP_400_BAD_REQUEST)
         
         if installment:
-            month_model = FeeInstallment.objects.filter(month=installment).first()
+            month_model = FeeInstallment.objects.filter(installment=installment).first()
 
             if not month_model:
                 month_model = FeeInstallment.objects.create(
-                    month=installment
+                    installment=installment
                 )
                 month_model.save()
                 students = Students.objects.filter(student_branch__branch__id=branchId)
@@ -113,7 +113,7 @@ class GenerateFee(ListAPIView):
                     fee = Fees.objects.create(
                         student=student,
                         amount=standard_fee.get(student.student_branch.standard),
-                        installment=installment
+                        installment=month_model
                     )
                     fee.save()
                 
