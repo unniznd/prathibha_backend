@@ -9,8 +9,9 @@ def write_data_from_csv(file_path):
         for row in reader:
             admission_number = int(row[0])
             student_name = row[1]
-            student_branch_id = int(row[2])
+            roll_number = int(row[2])
             phone_number = row[3]
+            student_branch_id = int(row[4])
 
             # Create the Student object and save it
             student = Students(
@@ -18,6 +19,7 @@ def write_data_from_csv(file_path):
                 student_name=student_name,
                 student_branch_id=student_branch_id,
                 phone_number=phone_number,
+                roll_number=roll_number
             )
             student.save()
 
