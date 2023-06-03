@@ -18,12 +18,9 @@ from .serializers import (
 
 from twilio.rest import Client
 
-from twilio.http.http_client import TwilioHttpClient
 
 from dotenv import load_dotenv
 import os
-
-from django.conf import settings
 
 load_dotenv()
 
@@ -257,17 +254,8 @@ class SendMessage(ListAPIView):
             account_sid = os.getenv('TWILIO_ACCOUNT_SID')
             auth_token = os.getenv('TWILIO_AUTH_TOKEN')
             
-            if(not settings.DEBUG):
-                proxy_client = TwilioHttpClient(
-                    proxy={
-                        'http': os.getenv('HTTP_PROXY'), 
-                        'https': os.getenv('HTTPS_PROXY')
-                    }
-                )
-                client = Client(account_sid, auth_token, http_client=proxy_client)
-
-            else:
-                client = Client(account_sid, auth_token)
+           
+            client = Client(account_sid, auth_token)
             
             for student in attendance:
                 message = client.messages.create(
