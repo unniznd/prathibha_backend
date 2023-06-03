@@ -12,5 +12,5 @@ class ViewStudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Students
-        fields = ('admission_number', 'student_name', 'standard', 'division',
+        fields = ('admission_number', 'roll_number','student_name', 'standard', 'division',
                    'branch', 'phone_number')

@@ -3,7 +3,7 @@ from .models import Students
 
 @admin.register(Students)
 class StudentsAdmin(admin.ModelAdmin):
-    list_display = ['admission_number', 'student_name', 'standard', 'division', 
+    list_display = ['admission_number', 'student_name', 'roll_number','standard', 'division', 
                     'branch', 'phone_number',]
 
     def standard(self, obj):

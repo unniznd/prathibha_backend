@@ -10,5 +10,5 @@ static/
 
 db.sqlite3
 
-# student.csv
-# students/write.py
+student.csv
+students/write.py
