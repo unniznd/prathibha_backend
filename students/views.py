@@ -63,7 +63,19 @@ class ViewStudents(ListAPIView):
                 division=request.data.get('division'),
                 branch=branch
             )
+            # find next roll number of student in this class
+            last_student = Students.objects.filter(
+                student_branch=class_division
+            ).order_by('-roll_number').first()
+            if last_student:
+                roll_number = last_student.roll_number + 1
+            else:
+                roll_number = 1
+
+           
+
             student = Students.objects.create(
+                roll_number=roll_number,
                 student_name=request.data.get('student_name').upper(),
                 admission_number=request.data.get('admission_number'),
                 phone_number=request.data.get('phone_number'),
