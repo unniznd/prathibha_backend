@@ -9,7 +9,7 @@ class StudentAttendanceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Students
-        fields = ('admission_number', 'student_name', 'standard', 
+        fields = ('admission_number', 'roll_number','student_name', 'standard', 
                   'division','is_absent')
     
 class AttendanceSerializer(serializers.ModelSerializer):
