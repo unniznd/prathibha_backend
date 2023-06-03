@@ -259,7 +259,7 @@ class SendMessage(ListAPIView):
             
             for student in attendance:
                 message = client.messages.create(
-                    body=f"{student.student.student_name} was absent today({student.date.strftime('%B %d, %Y')})",
+                    body=f"{student.student.student_name} was absent today({student.date.strftime('%B %d, %Y')})\nPrathibha Study Center\nBalussery",
                     from_="+13158608554",
                     to=f"+91{student.student.phone_number}"
                 )
