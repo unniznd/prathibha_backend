@@ -37,10 +37,11 @@ class StudentAttendanceReportSerializer(serializers.ModelSerializer):
         return self.context.get('date')
 
 class DetailedAttendanceSerializer(serializers.ModelSerializer):
+    roll_number = serializers.CharField(source='student.roll_number')
     student_name = serializers.CharField(source='student.student_name')
     phone_number = serializers.CharField(source='student.phone_number')
     class Meta:
         model = Attendace
-        fields = ('student_name', 'phone_number' )
+        fields = ('student_name', 'phone_number', 'roll_number' )
        
     
