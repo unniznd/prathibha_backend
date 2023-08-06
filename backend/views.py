@@ -25,8 +25,8 @@ class AttendanceReport(ListAPIView):
 
     def get(self, request, branchId, *args, **kwargs):
         queryset = Students.objects.all()
-        from_date = datetime.strptime(self.request.query_params.get('from', None),'%Y-%m-%d')
-        to_date = datetime.strptime(self.request.query_params.get('to', None),'%Y-%m-%d')
+        from_date = datetime.strptime(self.request.query_params.get('from', None),'%B %d, %Y')
+        to_date = datetime.strptime(self.request.query_params.get('to', None),'%B %d, %Y')
         view = self.request.query_params.get('view', None)
 
         if not from_date or not to_date:
@@ -58,7 +58,7 @@ class AttendanceReport(ListAPIView):
                         student.student_branch.standard,
                         student.student_branch.division,
                         datetime.strftime(from_date, "%B %d, %Y"),
-                        "Present" if Attendace.objects.filter(student=student.admission_number, date=from_date).first() else "Absent"
+                        "Absent" if Attendace.objects.filter(student=student.admission_number, date=from_date).first() else "Present"
                     ])
                    
 
@@ -98,8 +98,8 @@ class FeeReport(ListAPIView):
         # get from month, to month and view as parameters from query params
         # filter fee objects based on the above params
 
-        from_date = datetime.strptime(self.request.query_params.get('from', None),'%Y-%m-%d')
-        to_date = datetime.strptime(self.request.query_params.get('to', None),'%Y-%m-%d')
+        from_date = datetime.strptime(self.request.query_params.get('from', None),'%B %d, %Y')
+        to_date = datetime.strptime(self.request.query_params.get('to', None),'%B %d, %Y')
         view = self.request.query_params.get('view', None)
 
         if not from_date or not to_date:
